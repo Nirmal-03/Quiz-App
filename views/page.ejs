@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Capitals Quiz App</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <div class="app">
+        <div class="container">
+            <h1 class="quiz">QUIZ APP</h1>
+            <form action="/submit" method="post">
+                <h3>totalScore: <%=locals.score?score:"0"; %></h3>
+                <p><%= qn %></p>
+                <input type="text" name="answer" autofocus autocomplete="off">
+                <button type="submit">Submit
+                    <% if(locals.crt===true) {%>
+                        <span class="crt">✔</span>
+                        <% }else if(locals.crt===false){ %>
+                            <span class="wrong">❌</span>
+                            <% } %>
+                </button>
+            </form>
+        </div>
+    </div>
+    <script>
+        var answer="<%=locals.crt %>";
+        console.log(answer);
+        if(answer==="false"){
+            alert("GAME OVER! Your Score Is: <%=locals.score %>");
+            document.querySelector(".app").innerHTML="<a href='/' class='restart-btn' >RESTART</a>"
+        }
+    </script>
+</body>
+</html>
